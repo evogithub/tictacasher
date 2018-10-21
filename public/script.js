@@ -3,4 +3,4 @@ var board = [
   ['', '', ''],
   ['', '', '']
 ];
-var currentPlayer = x;
+var currentPlayer = 'x';
