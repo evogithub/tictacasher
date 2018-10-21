@@ -1,14 +1,21 @@
 window.onload = () => {
-  var boardState = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', '']
-  ];
-  var currentPlayer = 'x';
   var app = new Vue({
     el: '#ticTacToeBoard',
     data: {
-      board: boardState
+      board : [
+        '', '', '',
+        '', '', '',
+        '', '', ''
+    ],
+      currentPlayer: 'X'
+    },
+    methods:{
+      makeMove(cell){
+        if(this.board[cell] == ''){
+          this.board.splice(cell, 1,  this.currentPlayer);
+          this.currentPlayer = this.currentPlayer == 'X' ? 'O' : 'X'
+        }
+      }
     }
-  })
+  });
 }

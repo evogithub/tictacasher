@@ -3,11 +3,11 @@
 
 Tic Tac Toe - Server Side 2 players
 Board Array / Also store the game state
-We need something that drows the Board
-we need graphics for the board
 We need to test if a player has won the game
 We need to keep track of the turn
 We need to test if there is a draw (last move no winner)
+
+Added - sounds and graphics
 
 
 -->
@@ -19,13 +19,31 @@ We need to test if there is a draw (last move no winner)
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script type="text/javascript" src="script.js"></script>
   <style>
+  [v-cloak] {
+    display:none;
+  }
+  #ticTacToeBoard{
+    text-align: center;
+  }
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("backgrounds/stage1.gif");
+    width: 800px;
+    height: 336px;
+    color: white;
+  }
   table {
-    background-image: url("images/board-background.gif");
-    width: 480px;
-    height: 368px;
+    width: 336px;
+    height: 336px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
   }
   td {
-    border-collapse: collapse;
+    width: 33%;
+    height: 33%;
     border: solid white 2px;
     margin: 0;
     padding: 0;
@@ -33,12 +51,27 @@ We need to test if there is a draw (last move no winner)
   </style>
 </head>
 <body>
-  <div class="container" id="ticTacToeBoard">
-    <table>
-      <tr v-for="row in board">
-        <td v-for="cell in row">{{cell}}</td>
-      </tr>
-    </table>
+  <div id="ticTacToeBoard" v-cloak>
+    <p>Current Player: {{ currentPlayer }}</p>
+    <div class="container">
+      <table>
+        <tr>
+          <td @click="makeMove(0)">{{ board[0] }}</td>
+          <td @click="makeMove(1)">{{ board[1] }}</td>
+          <td @click="makeMove(2)">{{ board[2] }}</td>
+        </tr>
+        <tr>
+          <td @click="makeMove(3)">{{ board[3] }}</td>
+          <td @click="makeMove(4)">{{ board[4] }}</td>
+          <td @click="makeMove(5)">{{ board[5] }}</td>
+        </tr>
+        <tr>
+          <td @click="makeMove(6)">{{ board[6] }}</td>
+          <td @click="makeMove(7)">{{ board[7] }}</td>
+          <td @click="makeMove(8)">{{ board[8] }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </body>
 </html>
