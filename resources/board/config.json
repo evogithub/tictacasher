@@ -1,0 +1,21 @@
+{
+	"type": "Collection",
+	"properties": {
+		"boardState": {
+			"name": "boardState",
+			"type": "array",
+			"typeLabel": "array",
+			"required": true,
+			"id": "boardState",
+			"order": 0
+		},
+		"currentPlayer": {
+			"name": "currentPlayer",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "currentPlayer",
+			"order": 1
+		}
+	}
+}
