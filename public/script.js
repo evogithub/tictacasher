@@ -23,7 +23,7 @@ window.onload = () => {
           var audio = new Audio('game_sounds/hit' + randomSoundNumber + '.mp3')
           audio.play();
           randomSoundNumber = Math.floor(Math.random() * 10) + 1;
-          if(randomSoundNumber == '1'{
+          if(randomSoundNumber == '1'){
             randomSoundNumber = Math.floor(Math.random() * 5 ) + 1;
             var audio = new Audio('game_sounds/Random' + randomSoundNumber + '.mp3')
             audio.play();
