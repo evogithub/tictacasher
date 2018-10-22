@@ -56,7 +56,7 @@ window.onload = () => {
         }
       }
     }
-    var audio = new Audio('game_sounds/welcome.mp3')
-    audio.play();
   });
+  var audio = new Audio('game_sounds/welcome.mp3')
+  audio.play();
 }
