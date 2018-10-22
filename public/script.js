@@ -90,6 +90,18 @@ window.onload = () => {
       }
     }
   });
-  var audio = new Audio('game_sounds/welcome.mp3')
-  audio.play();
+  var bgAudio = new Audio('game_sounds/welcome.mp3')
+  bgAudio.play();
+  bgAudio.addEventListener('ended',() => {
+    bgAudio = new Audio('music/stage1_music.mp3')
+    bgAudio.play();
+    bgAudio.addEventListener('ended',() => {
+      bgAudio = new Audio('music/stage1_music.mp3')
+      bgAudio.play();
+      bgAudio.addEventListener('ended',() => {
+        bgAudio = new Audio('music/stage1_music.mp3')
+        bgAudio.play();
+      });
+    });
+  });
 }
