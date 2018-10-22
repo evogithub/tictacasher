@@ -28,6 +28,8 @@ window.onload = () => {
             var audio = new Audio('game_sounds/Random' + randomSoundNumber + '.mp3')
             audio.play();
           }
+          var audio = new Audio('game_sounds/Your_Move_' + this.currentPlayer + ' _player.mp3')
+          audio.play();
         }
         var winners =  [[0, 1, 2], // Check first row.
                 [3, 4, 5], // Check second Row
@@ -44,6 +46,8 @@ window.onload = () => {
             && this.board[win[1]] == this.board[win[2]]
           ){
             this.currentMessage = this.currentPlayer == 'X' ? 'O' : 'X';
+            var audio = new Audio('game_sounds/player_' + (this.currentPlayer == 'X' ? 'O' : 'X') + '_wins.mp3')
+            audio.play();
             var audio = new Audio('game_sounds/Game_Over.mp3')
             audio.play();
             this.gameOver = true;
@@ -52,5 +56,7 @@ window.onload = () => {
         }
       }
     }
+    var audio = new Audio('game_sounds/welcome.mp3')
+    audio.play();
   });
 }
