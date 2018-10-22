@@ -19,9 +19,15 @@ window.onload = () => {
         if(this.board[cell] == ''){
           this.board.splice(cell, 1,  this.currentPlayer);
           this.currentPlayer = this.currentPlayer == 'X' ? 'O' : 'X';
-          var randomSoundNumber = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+          var randomSoundNumber = Math.floor(Math.random() * 10) + 1;
           var audio = new Audio('game_sounds/hit' + randomSoundNumber + '.mp3')
           audio.play();
+          randomSoundNumber = Math.floor(Math.random() * 10) + 1;
+          if(randomSoundNumber) == '1'{
+            randomSoundNumber = Math.floor(Math.random() * 5 ) + 1;
+            var audio = new Audio('game_sounds/Random' + randomSoundNumber + '.mp3')
+            audio.play();
+          }
         }
         var winners =  [[0, 1, 2], // Check first row.
                 [3, 4, 5], // Check second Row
@@ -38,6 +44,8 @@ window.onload = () => {
             && this.board[win[1]] == this.board[win[2]]
           ){
             this.currentMessage = this.currentPlayer == 'X' ? 'O' : 'X';
+            var audio = new Audio('game_sounds/Game_Over.mp3')
+            audio.play();
             this.gameOver = true;
           }
 
