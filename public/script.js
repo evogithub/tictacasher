@@ -61,9 +61,31 @@ window.onload = () => {
             });
           }
           audio.addEventListener('ended',() => {
-            var audio = new Audio('game_sounds/Your_Move_' + this.currentPlayer + '_player.mp3')
-            audio.play();
+            if(this.currentPlayer !== ''){
+              var audio = new Audio('game_sounds/Your_Move_' + this.currentPlayer + '_player.mp3')
+              audio.play();
+            }
           });
+          var tieCount = 0;
+          for(win in winners){
+            if(this.board[win] !== ''){
+              tieCount++
+            }
+          }
+          if(tieCount == 8){
+            this.currentPlayer = '';
+            this.currentMessage = 'Draw Game';
+            this.gameOver = true;
+              audio.addEventListener('ended',() => {
+                var audio = new Audio('game_sounds/Game_Over.mp3');
+                audio.play();
+                audio.addEventListener('ended',() => {
+                  var audio = new Audio('game_sounds/draw_game.mp3')
+                  audio.play();
+                })
+              })
+          }
+          console.log(tieCount);
         }
       }
     }
