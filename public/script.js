@@ -28,7 +28,7 @@ window.onload = () => {
             var audio = new Audio('game_sounds/Random' + randomSoundNumber + '.mp3')
             audio.play();
           }
-          var audio = new Audio('game_sounds/Your_Move_' + this.currentPlayer + ' _player.mp3')
+          var audio = new Audio('game_sounds/Your_Move_' + this.currentPlayer + '_player.mp3')
           audio.play();
         }
         var winners =  [[0, 1, 2], // Check first row.
