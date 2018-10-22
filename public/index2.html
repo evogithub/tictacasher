@@ -1,0 +1,74 @@
+<html>
+<head>
+  <!--script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script-->
+  <script type="text/javascript" src="dpd.js"></script>
+  <!--script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <style>
+  [v-cloak] {
+    display:none;
+  }
+  body{
+    background-color: black;
+  }
+  #ticTacToeBoard{
+    text-align: center;
+    color: white;
+  }
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    height: 336px;
+    color: white;
+  }
+  table {
+    width: 800px;
+    height: 336px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td {
+    width: 33%;
+    height: 33%;
+    border: solid white 2px;
+    margin: 0;
+    color: white;
+    text-align: center;
+  }
+  td.playerX{
+    background-image:url("images/X-player.png");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  td.playerO{
+    background-image:url("images/O-player.png");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  </style>
+</head>
+<body>
+  <div id="ticTacToeBoard" v-cloak>
+    <img src="images/Header_Logo.png" alt="Welcome to Tic Tac Asher"/>
+    <p>SELECT LOCATION</p>
+    <div class="container">
+      <table>
+        <tr>
+          <td><img src="stage_thumbs/stage1.jpg" alt="Japanese Cemetary"/><br>Japanese Cemetary</td>
+          <td><img src="stage_thumbs/stage2.jpg" alt="Volcano Temple"/><br>Volcano Temple</td>
+          <td><img src="stage_thumbs/stage3.jpg" alt="Japanese Courtyard"/><br>Japanese Courtyard</td>
+        </tr>
+        <tr>
+          <td><img src="stage_thumbs/stage4.jpg" alt="Japanese Town Square"/><br>Japanese Town Square</td>
+          <td><img src="stage_thumbs/stage5.jpg" alt="Jungle Waterfalls"/><br>Jungle Waterfalls</td>
+          <td><img src="stage_thumbs/stage6.jpg" alt="Burning House"/><br>Burning House</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
