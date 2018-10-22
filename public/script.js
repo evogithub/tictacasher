@@ -20,7 +20,8 @@ window.onload = () => {
           this.board.splice(cell, 1,  this.currentPlayer);
           this.currentPlayer = this.currentPlayer == 'X' ? 'O' : 'X';
           var randomSoundNumber = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
-          this.playSound('game_sounds/hit' + randomSoundNumber + '.mp3');
+          var audio = new Audio('game_sounds/hit' + randomSoundNumber + '.mp3')
+          audio.play();
         }
         var winners =  [[0, 1, 2], // Check first row.
                 [3, 4, 5], // Check second Row
