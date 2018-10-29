@@ -22,14 +22,16 @@ window.onload = () => {
           var audio = new Audio('game_sounds/hit' + randomSoundNumber + '.mp3')
           audio.play();
         }
-        var winners =  [[0, 1, 2], // Check first row.
-                [3, 4, 5], // Check second Row
-                [6, 7, 8], // Check third Row
-                [0, 3, 6], // Check first column
-                [1, 4, 7], // Check second Column
-                [2, 5, 8], // Check third Column
-                [0, 4, 8], // Check first Diagonal
-                [2, 4, 6]]; // Check second Diagonal
+        var winners =  [
+          [0, 1, 2], // Check first row.
+          [3, 4, 5], // Check second Row
+          [6, 7, 8], // Check third Row
+          [0, 3, 6], // Check first column
+          [1, 4, 7], // Check second Column
+          [2, 5, 8], // Check third Column
+          [0, 4, 8], // Check first Diagonal
+          [2, 4, 6]
+        ]; // Check second Diagonal
         for(var win in winners){
           console.log(winners[win][0] + ' ' + winners[win][1] + ' ' + winners[win][2])
           console.log(this.board[winners[win][0]] + ' ' + this.board[winners[win][1]] + ' ' + this.board[winners[win][2]])

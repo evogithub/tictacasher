@@ -1,0 +1,153 @@
+<head>
+    <link rel="stylesheet" href="//unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <script src="//unpkg.com/mithril/mithril.js"></script>
+    <style>
+  body{
+    background-color: black;
+  }
+  #ticTacToeBoard{
+    text-align: center;
+    color: white;
+  }
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    height: 336px;
+    color: white;
+  }
+  .stage1{ background-image:url('backgrounds/stage1.gif'); }
+  .stage2{ background-image:url('backgrounds/stage2.gif'); }
+  .stage3{ background-image:url('backgrounds/stage3.gif'); }
+  .stage4{ background-image:url('backgrounds/stage4.gif'); }
+  .stage5{ background-image:url('backgrounds/stage5.gif'); }
+  .stage6{ background-image:url('backgrounds/stage6.gif'); }
+  table {
+    /*
+    width: 800px;
+    height: 336px;
+    */
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td {
+    width: 33%;
+    height: 33%;
+    border: solid white 2px;
+    margin: 0;
+    color: white;
+    text-align: center;
+  }
+  td.playerX{
+    background-image:url("images/X-player.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  td.playerO{
+    background-image:url("images/O-player.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+    </style>
+</head>
+<body>
+    <script>
+        var root = document.body,
+        currentPlayer = 'X',
+        statusMessage = 'Current Player: X',
+        gameOver = false,
+        board = ['','','', '','','', '','',''],
+        winners =  [
+          [0, 1, 2], [3, 4, 5], [6, 7, 8], // Check Rows
+          [0, 3, 6], [1, 4, 7], [2, 5, 8], // Check Columns
+          [0, 4, 8], [2, 4, 6]  // Check DiagonalS
+        ];
+        var checkWinner = ()=>{
+            for (var win in winners) {
+                if (
+                    board[winners[win][0]] != ''
+                    && board[winners[win][0]] == board[winners[win][1]]
+                    && board[winners[win][1]] == board[winners[win][2]]
+                ) {
+                    gameOver = true;
+                    statusMessage = 'Winner: ' + currentPlayer;
+                }
+            }
+            if (!gameOver && board.indexOf('') == -1) {
+                    gameOver = true;
+                    statusMessage = 'Draw';
+                    return;
+            }
+            if (!gameOver) {
+                currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+                statusMessage = 'Current Player: ' + currentPlayer;
+            }
+        }
+        var move = (cell)=>{
+            if(gameOver || board[cell] != ''){
+                return;
+            }
+            //board[cell] = currentPlayer;
+            board[cell] = currentPlayer;
+            checkWinner();
+        }
+        var tac = (toe)=>{
+            return m(
+                'td.ba.tc.v-mid.h2.w2.br4.f3.player'+ (board[toe] ? board[toe] + '.o-100' : (!gameOver ? currentPlayer + '.glow.o-0' :'')),
+                { player: '', onclick: () => { move(toe) } },
+                );
+        };
+        var tic = (toe)=>{ return m('tr', [ tac(toe), tac(++toe), tac(++toe) ]) };
+        var stagesTop = [
+            { n: 1, text: 'Japanese Cemetary' }, { n: 2, text: 'Volcano Temple' }, { n: 3, text: 'Japanese Courtyard' },
+        ];
+        var stagesBottom = [
+            { n: 4, text: 'Japanese Town Square' }, { n: 5, text: 'Jungle Waterfalls' }, { n: 6, text: 'Burning House' },
+        ]
+        var stageMap = {
+            view:(stage)=>{
+                return m('td', 
+                    m('a', { href: '#!/play?stage=' + stage.attrs.n },[
+                        m('img', { src: 'stage_thumbs/stage' + stage.attrs.n + '.jpg', alt: stage.attrs.text }),
+                        m('br'),
+                        stage.attrs.text
+                    ]
+                    )
+                )
+            }
+        }
+        var splash = {
+            view: ()=>{
+                return m('.container.splash',[
+                    m('img',{src:'images/Header_Logo.png',alt:'Welcome to Tic Tac Asher'}),
+                    m('p','SELECT LOCATION'),
+                    m('table',[
+                        m('tr', stagesTop.map((s)=>{return m(stageMap,s)})),
+                        m('tr', stagesBottom.map((s)=>{return m(stageMap,s)}))
+                    ])
+                ])
+            }
+        }
+        var play = {
+            view: () => {
+                console.log(m.route.param('stage'));
+                return m('main.sans-serif.bg-blue.h-100.white.bg-center.cover' + '.stage' + m.route.param('stage'),
+                    m('div.center.w-75.h-75', [
+                        //m('h3.tc.f1.grow', 'Tic Tac Mithril'),
+                        m('img.db.center.grow', { src: 'images/Header_Logo.png', alt: 'Welcome to Tic Tac Asher' }),
+                        m('h3.tc.f3', { id: 'game-status' }, statusMessage),
+                        m('table.center.collapse.dt--fixed.h-75.w-75', [tic(0), tic(3), tic(6),
+                    ]),
+                ]))
+            }
+        }
+        m.route(root,'/splash',{
+            '/splash' : splash,
+            '/play' : play
+        })
+    </script>
+</body>

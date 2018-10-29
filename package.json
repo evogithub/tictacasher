@@ -1,11 +1,9 @@
 {
-  "engines": {
-    "node": ">= 4.0"
-  },
   "dependencies": {
-    "deployd": "^1.0.0",
-    "dpd-clientlib": "^0.0.1",
-    "dpd-dashboard": "^0.0.1",
+    "serve": "^10.0.2",
     "vue": "^2.5.17"
+  },
+  "scripts":{
+    "start":"serve -p 8080 public"
   }
 }
