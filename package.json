@@ -3,7 +3,7 @@
     "serve": "^10.0.2",
     "vue": "^2.5.17"
   },
-  "scripts":{
-    "start":"serve -p 8080 public"
+  "scripts": {
+    "start": "serve -p 8080 public"
   }
 }
